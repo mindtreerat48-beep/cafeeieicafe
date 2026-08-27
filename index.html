@@ -1,0 +1,957 @@
+```html
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>พฤษฤดา Camping Cafe | ปิ้งไป ปิ้งใจ ไปในอุทยานแคมป์</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: "#315C45",
+                        sage: "#A8C3A0",
+                        cream: "#F7F3E8",
+                        earth: "#8B6F47",
+                        accent: "#D98236"
+                    },
+                    fontFamily: {
+                        heading: ["Kanit", "sans-serif"],
+                        body: ["Prompt", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Prompt", sans-serif;
+            background: #F7F3E8;
+            color: #24352B;
+        }
+
+        .hero-overlay {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(25, 65, 45, 0.92) 0%,
+                    rgba(25, 65, 45, 0.68) 45%,
+                    rgba(25, 65, 45, 0.20) 100%
+                );
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .image-card {
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(49,92,69,0.12);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="h-20 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-forest text-white flex items-center justify-center text-xl">
+                    🌲
+                </div>
+
+                <div>
+                    <p class="font-heading font-semibold text-forest text-lg leading-none">
+                        พฤษฤดา
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        CAMPING CAFE
+                    </p>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm">
+                <a href="#home" class="hover:text-forest transition">หน้าแรก</a>
+                <a href="#features" class="hover:text-forest transition">บรรยากาศ</a>
+                <a href="#menu" class="hover:text-forest transition">เมนู</a>
+                <a href="#gallery" class="hover:text-forest transition">แกลเลอรี</a>
+                <a href="#reviews" class="hover:text-forest transition">รีวิว</a>
+                <a href="#contact" class="hover:text-forest transition">ติดต่อ</a>
+            </div>
+
+            <!-- Desktop CTA -->
+            <a href="#reservation"
+               class="hidden md:inline-flex bg-forest text-white px-6 py-3 rounded-full font-medium hover:bg-green-900 transition">
+                จองโต๊ะ
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="menuButton"
+                class="md:hidden text-forest text-2xl"
+                aria-label="เปิดเมนู">
+                ☰
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden pb-5">
+            <div class="flex flex-col gap-4 text-center">
+                <a href="#home">หน้าแรก</a>
+                <a href="#features">บรรยากาศ</a>
+                <a href="#menu">เมนู</a>
+                <a href="#gallery">แกลเลอรี</a>
+                <a href="#reviews">รีวิว</a>
+                <a href="#contact">ติดต่อ</a>
+
+                <a href="#reservation"
+                   class="bg-forest text-white py-3 rounded-full">
+                    จองโต๊ะ
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+
+    <!-- Placeholder Hero Image -->
+    <img
+        src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=2000&q=85"
+        alt="บรรยากาศแคมป์ปิ้งท่ามกลางธรรมชาติ"
+        class="absolute inset-0 w-full h-full object-cover"
+    >
+
+    <div class="absolute inset-0 hero-overlay"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 w-full pt-20">
+        <div class="max-w-3xl text-white">
+
+            <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
+                <span>🌿</span>
+                <span class="text-sm">Camping • Cafe • Nature</span>
+            </div>
+
+            <h1 class="font-heading text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight">
+                ปิ้งไป ปิ้งใจ<br>
+                <span class="text-sage">ไปในอุทยานแคมป์</span>
+            </h1>
+
+            <p class="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed">
+                คาเฟ่กลางธรรมชาติสำหรับคนที่อยากพักใจ
+                นั่งจิบกาแฟ กินของอร่อย
+                และใช้เวลาร่วมกับคนที่คุณรัก
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-9">
+
+                <a href="#reservation"
+                   class="inline-flex justify-center items-center bg-accent text-white px-8 py-4 rounded-full font-semibold hover:brightness-110 transition shadow-lg">
+                    🏕️ จองโต๊ะ
+                </a>
+
+                <a href="#features"
+                   class="inline-flex justify-center items-center border border-white/60 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition">
+                    สำรวจร้าน →
+                </a>
+
+            </div>
+
+            <div class="flex flex-wrap gap-6 mt-10 text-sm text-white/80">
+                <span>✓ บรรยากาศธรรมชาติ</span>
+                <span>✓ เหมาะกับครอบครัว</span>
+                <span>✓ จุดกางเต็นท์</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+<section id="features" class="py-20 lg:py-28 bg-white">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-14">
+            <span class="text-forest font-semibold">WHY PRUEKSRIDA?</span>
+
+            <h2 class="font-heading text-4xl sm:text-5xl font-bold text-gray-900 mt-3">
+                มากกว่าคาเฟ่
+            </h2>
+
+            <p class="mt-4 text-gray-600">
+                พื้นที่เล็ก ๆ ที่อยากให้คุณได้พักจากความวุ่นวาย
+                แล้วกลับมาใช้เวลากับธรรมชาติอีกครั้ง
+            </p>
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+            <!-- Feature 1 -->
+            <article class="feature-card bg-cream rounded-3xl p-8">
+                <div class="w-16 h-16 rounded-2xl bg-sage/40 flex items-center justify-center text-3xl mb-6">
+                    🪑
+                </div>
+
+                <h3 class="font-heading text-2xl font-semibold">
+                    พื้นที่พักผ่อน & ทำงาน
+                </h3>
+
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    พื้นที่นั่งพักผ่อนและทำงาน
+                    พร้อมบรรยากาศครอบครัวที่อบอุ่น
+                    เป็นกันเอง และสบาย ๆ
+                </p>
+            </article>
+
+
+            <!-- Feature 2 -->
+            <article class="feature-card bg-cream rounded-3xl p-8">
+                <div class="w-16 h-16 rounded-2xl bg-sage/40 flex items-center justify-center text-3xl mb-6">
+                    🏕️
+                </div>
+
+                <h3 class="font-heading text-2xl font-semibold">
+                    แคมป์ปิ้งสุดชิล
+                </h3>
+
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    นั่งกิน นั่งคุย สูดอากาศดี ๆ
+                    พร้อมวิวธรรมชาติที่เหมาะสำหรับ
+                    การพักผ่อนอย่างแท้จริง
+                </p>
+            </article>
+
+
+            <!-- Feature 3 -->
+            <article class="feature-card bg-cream rounded-3xl p-8">
+                <div class="w-16 h-16 rounded-2xl bg-sage/40 flex items-center justify-center text-3xl mb-6">
+                    🔥
+                </div>
+
+                <h3 class="font-heading text-2xl font-semibold">
+                    จุดกางเต็นท์
+                </h3>
+
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    พื้นที่กลางสำหรับกิจกรรมครอบครัว
+                    ปิ้งย่าง พักผ่อน และใช้เวลาร่วมกัน
+                    ท่ามกลางธรรมชาติ
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     ABOUT / ATMOSPHERE
+========================================================= -->
+<section class="py-20 lg:py-28 bg-forest text-white">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+            <div>
+                <span class="text-sage font-semibold">
+                    CAMPING EXPERIENCE
+                </span>
+
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-3">
+                    หนีความวุ่นวาย<br>
+                    มาพักใจกลางธรรมชาติ
+                </h2>
+
+                <p class="mt-6 text-white/75 leading-relaxed text-lg">
+                    ที่พฤษฤดา เราอยากสร้างพื้นที่ที่ทุกคน
+                    สามารถมานั่งพัก พูดคุย กินอาหารอร่อย ๆ
+                    และใช้เวลาร่วมกันได้อย่างเต็มที่
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 mt-10">
+
+                    <div>
+                        <p class="text-4xl font-bold">24/7</p>
+                        <p class="text-white/60 mt-1">ช่วงเวลาพักผ่อน</p>
+                    </div>
+
+                    <div>
+                        <p class="text-4xl font-bold">100%</p>
+                        <p class="text-white/60 mt-1">ธรรมชาติ</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-4">
+
+                <img
+                    src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&w=800&q=80"
+                    alt="เต็นท์กลางธรรมชาติ"
+                    loading="lazy"
+                    class="rounded-3xl w-full h-64 object-cover"
+                >
+
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80"
+                    alt="บรรยากาศธรรมชาติ"
+                    loading="lazy"
+                    class="rounded-3xl w-full h-64 object-cover mt-10"
+                >
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     MENU
+========================================================= -->
+<section id="menu" class="py-20 lg:py-28 bg-cream">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-12">
+
+            <div>
+                <span class="text-forest font-semibold">
+                    OUR FAVORITES
+                </span>
+
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-3">
+                    เมนูแนะนำ
+                </h2>
+            </div>
+
+            <p class="text-gray-600 max-w-md">
+                อาหาร เครื่องดื่ม และเมนูสำหรับสายแคมป์
+                ที่เหมาะกับการนั่งกินยาว ๆ กับคนที่คุณรัก
+            </p>
+
+        </div>
+
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Menu Item -->
+            <article class="bg-white rounded-3xl overflow-hidden shadow-sm image-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=800&q=80"
+                    alt="อาหารแนะนำ"
+                    loading="lazy"
+                    class="w-full h-56 object-cover"
+                >
+
+                <div class="p-6">
+                    <div class="flex justify-between gap-4">
+                        <h3 class="font-heading text-xl font-semibold">
+                            Camping BBQ Set
+                        </h3>
+
+                        <span class="text-accent font-bold">
+                            ฿299
+                        </span>
+                    </div>
+
+                    <p class="text-gray-500 text-sm mt-2">
+                        ชุดปิ้งย่างสำหรับแบ่งปัน
+                    </p>
+                </div>
+
+            </article>
+
+
+            <article class="bg-white rounded-3xl overflow-hidden shadow-sm image-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
+                    alt="กาแฟ"
+                    loading="lazy"
+                    class="w-full h-56 object-cover"
+                >
+
+                <div class="p-6">
+                    <div class="flex justify-between gap-4">
+                        <h3 class="font-heading text-xl font-semibold">
+                            Forest Coffee
+                        </h3>
+
+                        <span class="text-accent font-bold">
+                            ฿95
+                        </span>
+                    </div>
+
+                    <p class="text-gray-500 text-sm mt-2">
+                        กาแฟหอม ๆ สำหรับเช้าวันใหม่
+                    </p>
+                </div>
+
+            </article>
+
+
+            <article class="bg-white rounded-3xl overflow-hidden shadow-sm image-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80"
+                    alt="ขนมหวาน"
+                    loading="lazy"
+                    class="w-full h-56 object-cover"
+                >
+
+                <div class="p-6">
+                    <div class="flex justify-between gap-4">
+                        <h3 class="font-heading text-xl font-semibold">
+                            Camp Dessert
+                        </h3>
+
+                        <span class="text-accent font-bold">
+                            ฿129
+                        </span>
+                    </div>
+
+                    <p class="text-gray-500 text-sm mt-2">
+                        ขนมหวานสำหรับปิดท้ายมื้อพิเศษ
+                    </p>
+                </div>
+
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     GALLERY
+========================================================= -->
+<section id="gallery" class="py-20 lg:py-28 bg-white">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="text-center mb-12">
+            <span class="text-forest font-semibold">
+                GALLERY
+            </span>
+
+            <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-3">
+                บรรยากาศของเรา
+            </h2>
+        </div>
+
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <img
+                src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80"
+                alt="วิวธรรมชาติ"
+                loading="lazy"
+                class="w-full h-56 lg:h-72 object-cover rounded-2xl"
+            >
+
+            <img
+                src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80"
+                alt="ภูเขา"
+                loading="lazy"
+                class="w-full h-56 lg:h-72 object-cover rounded-2xl"
+            >
+
+            <img
+                src="https://images.unsplash.com/photo-1523987355523-c7b5b0723c6a?auto=format&fit=crop&w=800&q=80"
+                alt="การตั้งแคมป์"
+                loading="lazy"
+                class="w-full h-56 lg:h-72 object-cover rounded-2xl"
+            >
+
+            <img
+                src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80"
+                alt="เต็นท์แคมป์"
+                loading="lazy"
+                class="w-full h-56 lg:h-72 object-cover rounded-2xl"
+            >
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
+<section id="reviews" class="py-20 lg:py-28 bg-cream">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-14">
+
+            <span class="text-forest font-semibold">
+                CUSTOMER LOVE
+            </span>
+
+            <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-3">
+                เสียงจากคนที่เคยมาพักใจ
+            </h2>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+            <article class="bg-white rounded-3xl p-7 shadow-sm">
+
+                <div class="text-accent text-xl">
+                    ★★★★★
+                </div>
+
+                <p class="mt-5 text-gray-600 leading-relaxed">
+                    “บรรยากาศดีมาก เหมาะกับการมานั่งพัก
+                    และถ่ายรูปมาก ๆ อาหารก็อร่อย”
+                </p>
+
+                <p class="mt-6 font-semibold">
+                    — ลูกค้าท่านหนึ่ง
+                </p>
+
+            </article>
+
+
+            <article class="bg-white rounded-3xl p-7 shadow-sm">
+
+                <div class="text-accent text-xl">
+                    ★★★★★
+                </div>
+
+                <p class="mt-5 text-gray-600 leading-relaxed">
+                    “ชอบบรรยากาศมาก เหมือนมานั่งพักผ่อน
+                    ในแคมป์เล็ก ๆ กับครอบครัว”
+                </p>
+
+                <p class="mt-6 font-semibold">
+                    — ลูกค้าท่านหนึ่ง
+                </p>
+
+            </article>
+
+
+            <article class="bg-white rounded-3xl p-7 shadow-sm">
+
+                <div class="text-accent text-xl">
+                    ★★★★★
+                </div>
+
+                <p class="mt-5 text-gray-600 leading-relaxed">
+                    “เป็นอีกที่ที่อยากกลับมาอีก
+                    นั่งชิลได้ยาว ๆ บรรยากาศดีมาก”
+                </p>
+
+                <p class="mt-6 font-semibold">
+                    — ลูกค้าท่านหนึ่ง
+                </p>
+
+            </article>
+
+        </div>
+
+
+        <!-- Metrics -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-12">
+
+            <div class="text-center bg-white rounded-2xl p-6">
+                <p class="font-heading text-3xl font-bold text-forest">4.9/5</p>
+                <p class="text-sm text-gray-500 mt-1">คะแนนรีวิว</p>
+            </div>
+
+            <div class="text-center bg-white rounded-2xl p-6">
+                <p class="font-heading text-3xl font-bold text-forest">1K+</p>
+                <p class="text-sm text-gray-500 mt-1">ลูกค้าที่มาเยือน</p>
+            </div>
+
+            <div class="text-center bg-white rounded-2xl p-6">
+                <p class="font-heading text-3xl font-bold text-forest">100%</p>
+                <p class="text-sm text-gray-500 mt-1">ความสุข</p>
+            </div>
+
+            <div class="text-center bg-white rounded-2xl p-6">
+                <p class="font-heading text-3xl font-bold text-forest">🌿</p>
+                <p class="text-sm text-gray-500 mt-1">ใกล้ชิดธรรมชาติ</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     CTA / RESERVATION
+========================================================= -->
+<section id="reservation" class="py-20 lg:py-28 bg-forest">
+
+    <div class="max-w-6xl mx-auto px-5 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+            <div class="text-white">
+
+                <span class="text-sage font-semibold">
+                    READY TO CAMP?
+                </span>
+
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-3">
+                    มาใช้เวลาช้า ๆ
+                    ด้วยกันสักวัน
+                </h2>
+
+                <p class="mt-5 text-white/75 leading-relaxed">
+                    จองโต๊ะหรือฝากข้อมูลไว้กับเรา
+                    แล้วมาเจอกันที่พฤษฤดา Camping Cafe
+                </p>
+
+                <div class="mt-8 space-y-3 text-white/85">
+                    <p>📍 พื้นที่ธรรมชาติสำหรับพักผ่อน</p>
+                    <p>☕ Cafe & Food</p>
+                    <p>🏕️ Camping Area</p>
+                </div>
+
+            </div>
+
+
+            <!-- Form -->
+            <div class="bg-white rounded-3xl p-7 sm:p-9 shadow-2xl">
+
+                <h3 class="font-heading text-2xl font-semibold">
+                    จองโต๊ะ / สอบถามข้อมูล
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-2">
+                    กรอกข้อมูลเบื้องต้น แล้วเราจะติดต่อกลับ
+                </p>
+
+
+                <form id="reservationForm" class="mt-7 space-y-5">
+
+                    <div>
+                        <label for="name" class="block text-sm font-medium mb-2">
+                            ชื่อ
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text"
+                            required
+                            placeholder="ชื่อของคุณ"
+                            class="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-sage"
+                        >
+                    </div>
+
+
+                    <div>
+                        <label for="contact" class="block text-sm font-medium mb-2">
+                            เบอร์โทรศัพท์ / อีเมล
+                        </label>
+
+                        <input
+                            id="contact"
+                            type="text"
+                            required
+                            placeholder="สำหรับติดต่อกลับ"
+                            class="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-sage"
+                        >
+                    </div>
+
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-2">
+                            รายละเอียด
+                        </label>
+
+                        <textarea
+                            id="message"
+                            rows="4"
+                            placeholder="วันที่ต้องการจอง / จำนวนคน / ข้อความเพิ่มเติม"
+                            class="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-sage"
+                        ></textarea>
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="w-full bg-accent text-white py-4 rounded-xl font-semibold hover:brightness-110 transition">
+                        ส่งข้อมูล
+                    </button>
+
+
+                    <p class="text-xs text-gray-400 text-center">
+                        🔒 ข้อมูลของคุณจะถูกใช้เพื่อการติดต่อกลับเท่านั้น
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+<section id="contact" class="py-20 bg-white">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+
+            <div>
+                <div class="text-3xl">📍</div>
+                <h3 class="font-heading text-xl font-semibold mt-3">
+                    ที่ตั้ง
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    พฤษฤดา Camping Cafe
+                </p>
+            </div>
+
+
+            <div>
+                <div class="text-3xl">🕐</div>
+                <h3 class="font-heading text-xl font-semibold mt-3">
+                    เวลาเปิดบริการ
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    โปรดตรวจสอบเวลาเปิดบริการล่าสุด
+                </p>
+            </div>
+
+
+            <div>
+                <div class="text-3xl">📞</div>
+                <h3 class="font-heading text-xl font-semibold mt-3">
+                    ติดต่อเรา
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    08X-XXX-XXXX
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="bg-[#1D3528] text-white">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12">
+
+        <div class="grid md:grid-cols-4 gap-10">
+
+            <!-- Brand -->
+            <div class="md:col-span-2">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="w-11 h-11 rounded-full bg-sage text-forest flex items-center justify-center text-xl">
+                        🌲
+                    </div>
+
+                    <div>
+                        <p class="font-heading font-semibold text-lg">
+                            พฤษฤดา
+                        </p>
+
+                        <p class="text-xs text-white/50">
+                            CAMPING CAFE
+                        </p>
+                    </div>
+
+                </div>
+
+                <p class="text-white/60 mt-5 max-w-md leading-relaxed">
+                    คาเฟ่และพื้นที่แคมป์เล็ก ๆ
+                    สำหรับคนที่อยากพักผ่อน
+                    กินของอร่อย และใกล้ชิดธรรมชาติ
+                </p>
+
+            </div>
+
+
+            <!-- Links -->
+            <div>
+
+                <h3 class="font-semibold mb-4">
+                    เมนู
+                </h3>
+
+                <div class="space-y-3 text-white/60 text-sm">
+
+                    <a href="#home" class="block hover:text-white">
+                        หน้าแรก
+                    </a>
+
+                    <a href="#menu" class="block hover:text-white">
+                        เมนู
+                    </a>
+
+                    <a href="#gallery" class="block hover:text-white">
+                        แกลเลอรี
+                    </a>
+
+                    <a href="#contact" class="block hover:text-white">
+                        ติดต่อเรา
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Social -->
+            <div>
+
+                <h3 class="font-semibold mb-4">
+                    ติดตามเรา
+                </h3>
+
+                <div class="flex gap-3">
+
+                    <a
+                        href="#"
+                        aria-label="Facebook"
+                        class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
+                        f
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="Instagram"
+                        class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
+                        ◎
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="TikTok"
+                        class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
+                        ♪
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/40">
+
+            © 2026 พฤษฤดา Camping Cafe. All rights reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+
+    // Mobile navigation
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+
+
+    // Close mobile menu after clicking a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+
+        link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+        });
+
+    });
+
+
+    // Demo reservation form
+    const reservationForm = document.getElementById("reservationForm");
+
+    reservationForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert(
+            "ขอบคุณสำหรับการติดต่อ 🌿\n\n" +
+            "ระบบตัวอย่างได้รับข้อมูลของคุณแล้ว"
+        );
+
+        reservationForm.reset();
+
+    });
+
+</script>
+
+</body>
+</html>
+```
